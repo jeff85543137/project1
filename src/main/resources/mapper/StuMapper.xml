@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bj.dao.StuDao">
+	
+	<!-- 1，size:表示缓存cache中能容纳的最大元素数。默认是1024； 
+		 2，flushInterval:定义缓存刷新周期，以毫秒计； 
+		 3，eviction:定义缓存的移除机制；默认是LRU(least recently userd，最近最少使用),还有FIFO(first in 
+			first out，先进先出) 
+		 4，readOnly:默认值是false，假如是true的话，缓存只能读。 -->
+	<cache size="1024" flushInterval="60000" eviction="LRU" readOnly="false" />
+
+
+
+
+	<select id="getAllStu" resultType="stu">
+		select * from newstudentinfo
+	</select>
+	
+	  <insert id="save" parameterType="stu">
+        insert into newstudentinfo(name,score,phone) values(#{name},#{score},#{phone})
+     </insert>
+     
+	<insert id="batchsave" parameterType="java.util.List">
+		insert into mobile values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id},#{item.mobilenumber},#{item.mobilearea},#{item.mobiletype},#{item.areacode},#{item.postcode})
+		</foreach>
+	</insert>
+
+
+</mapper>
