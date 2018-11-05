@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+ <jaxrs:server id="hi" address="/mobile">
+ 	<jaxrs:serviceBeans>
+ 		<ref bean="mobileService"/>
+ 	</jaxrs:serviceBeans>
+ 	
+ 	<jaxrs:extensionMappings>
+ 		<entry key="xml" value="applicatioin/xml"/>
+ 		<entry key="json" value="application/json"></entry>
+ 	</jaxrs:extensionMappings>
+ 	<jaxrs:providers>
+ 		<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider"></bean>
+ 	</jaxrs:providers>
+ </jaxrs:server>
+
+</beans>
